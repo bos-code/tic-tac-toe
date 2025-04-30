@@ -1,6 +1,8 @@
 import { Fragment, useState } from "react";
 import img from "./assets/tic. tac.toe..png";
 import "./App.css";
+import { ScoreBoard } from "./ScoreBoard";
+import { Turns } from "./Turns";
 
 function App() {
   return <HeroWrapper />;
@@ -14,10 +16,36 @@ function HeroWrapper() {
     setBoard(Array(9).fill(null));
   }
 
-  function handleDraw() {
-    const isDraw = board.every((square) => square !== null);
+  const checkWinner = (squares) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let [a, b, c] of lines) {
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[b] === squares[c]
+      ) {
+        return squares[a];
+      }
+    }
+    return null;
+  };
+
+  const winner = checkWinner(board);
+  function checkDraw(board, winner) {
+    const isBoardFull = board.every((cell) => cell !== null);
+    const isDraw = isBoardFull && winner == null;
     return isDraw;
   }
+  const isDraw = checkDraw(board, winner);
 
   return (
     <div className="body-wrapper">
@@ -25,20 +53,30 @@ function HeroWrapper() {
         <img src={img} alt="" />
       </figure>
       <div className="wrapper">
-        <ScoreBoard />
+        <ScoreBoard onDraw={isDraw} winner={winner} />
         <Board
           isXNext={isXNext}
           setIsXNext={setIsXNext}
           board={board}
           setBoard={setBoard}
+          winner={winner}
         />
-        <Turns isXNext={isXNext} onDraw={handleDraw} onReset={handleReset} />
+        <Turns
+          isXNext={isXNext}
+          winner={winner}
+          onFilled={board}
+          onReset={handleReset}
+        />
       </div>
     </div>
   );
 }
 
-const Board = ({ isXNext, setIsXNext, board, setBoard }) => {
+function Winner({ winner }) {
+  return <div>{winner ? `Winner: ${winner}` : ""}</div>;
+}
+
+const Board = ({ isXNext, setIsXNext, board, setBoard, winner }) => {
   function handleNext() {
     setIsXNext(!isXNext);
   }
@@ -50,12 +88,16 @@ const Board = ({ isXNext, setIsXNext, board, setBoard }) => {
       setBoard(newBoard);
       handleNext();
     }
-    console.log(board.every((value) => value !== null));
     if (board.every((value) => value !== null)) {
       setBoard(Array(9).fill(null));
     }
   }
-
+  if (winner) {
+    return <Winner winner={winner} />;
+  }
+  if (board.every((value) => value !== null)) {
+    return <div className="board">Draw</div>;
+  }
   return (
     <div className="board">
       {board.map((value, index) => (
@@ -84,46 +126,5 @@ const Square = ({ value, onClick }) => {
     </button>
   );
 };
-
-function Turns({ isXNext, onDraw, onReset }) {
-  function handleReset() {
-    onReset();
-  }
-
-  const isDraw = onDraw();
-
-  return (
-    <div>
-      {isDraw ? (
-        <button className="btn" onClick={handleReset}>
-          Play Again
-        </button>
-      ) : (
-        <span className={isXNext ? "x tag" : "o tag"}>
-          {isXNext ? "X’s Turn" : "O’s Turn"}
-        </span>
-      )}
-    </div>
-  );
-}
-
-function ScoreBoard() {
-  return (
-    <div className="scoreWrapper">
-      <div className="card">
-        <p>PLAYER X</p>
-        <span>0</span>
-      </div>
-      <div className="card">
-        <p>Draw</p>
-        <span>0</span>
-      </div>
-      <div className="card">
-        <p>PLAYER O</p>
-        <span>0</span>
-      </div>
-    </div>
-  );
-}
 
 export default App;

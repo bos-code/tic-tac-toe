@@ -1,0 +1,39 @@
+import { useState, useEffect } from "react";
+
+export function ScoreBoard({ onDraw, winner }) {
+  const [draw, setDraw] = useState(0);
+  const [win, setWin] = useState(0);
+  const [loss, setLoss] = useState(0);
+  useEffect(() => {
+    if (onDraw) {
+      setDraw((prev) => prev + 1); // Draw
+    }
+  }, [onDraw]);
+  useEffect(() => {
+    if (!winner) return;
+
+    if (winner === "x") {
+      setLoss((prev) => prev + 1); // X loses
+    }
+    if (winner === "O") {
+      setWin((prev) => prev + 1); // O wins
+    }
+  }, [winner]);
+
+  return (
+    <div className="scoreWrapper">
+      <div className="card">
+        <p>PLAYER X</p>
+        <span>{loss}</span>
+      </div>
+      <div className="card">
+        <p>Draw</p>
+        <span>{draw}</span>
+      </div>
+      <div className="card">
+        <p>PLAYER O</p>
+        <span>{win}</span>
+      </div>
+    </div>
+  );
+}

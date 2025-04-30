@@ -12,31 +12,33 @@
   align-items: center;
   background-color: #5a1e76;
   border-radius: 100px;
+  overflow: hidden;
 }
+
 body {
   background-color: #3d1d4dfa;
 }
+
 .comp {
   position: absolute;
   bottom: 0;
   left: 0;
-  max-width: 280px;
-  img {
-    width: 100%;
-    height: auto;
-  }
+  width: 250px;
+}
+
+.comp img {
+  width: 100%;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin: 40px 0 80px;
+  grid-auto-rows: 120px;
+  gap: 1rem;
+  margin: 40px 0 20px;
 }
 
 .square {
-  width: 150px;
-  height: 150px;
   background: #43115b;
   display: flex;
   justify-content: center;
@@ -59,12 +61,15 @@ body {
   pointer-events: none;
   opacity: 1;
 }
+
 .op {
   opacity: 0;
 }
+
 .player:hover {
   transform: translate(-50%, -50%) scale(1.2);
 }
+
 .player:active {
   transform: translate(-50%, -50%) scale(1.1);
 }
@@ -79,16 +84,21 @@ body {
 
 .tag {
   padding: 1rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 1.8rem;
 }
+
 .wrapper {
   background-color: #2b0040;
-  padding: 4rem;
+  padding: 2rem;
   border-radius: 50px;
+}
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
 }
 
 .scoreWrapper {
@@ -100,7 +110,7 @@ body {
 }
 
 .card {
-  padding: 0.8rem 1.5rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,16 +122,20 @@ body {
 .card:nth-child(1) {
   background-color: #48d2fe;
 }
+
 .card:nth-child(2) {
   background-color: #bcdbf9;
 }
+
 .card:nth-child(3) {
   background-color: #e2be00;
 }
 
 .card p {
   font-size: 20px;
+  white-space: nowrap;
 }
+
 .card span {
   font-size: 2.2rem;
 }
@@ -137,12 +151,118 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 6rem;
+  /* margin-left: 6rem; */
 }
 
 .btn:hover {
   background-color: #5a1e76;
 }
+
 .btn:active {
   transform: scale(0.9);
 }
+
+/* Media Queries for Mobile Devices */
+
+/* Media Queries for Mobile Devices */
+@media only screen and (max-width: 1600px) {
+  .body-wrapper {
+    border-radius: 20px;
+  }
+
+  .board {
+    grid-auto-rows: 80px;
+
+    gap: 0.5rem;
+    margin: 30px 0 20px;
+  }
+
+  .square {
+    border-radius: 0 15px 0 15px;
+  }
+
+  .player {
+    font-size: 3rem;
+  }
+
+  .wrapper {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .scoreWrapper {
+    padding-bottom: 20px;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 0.8rem;
+  }
+
+  .card p {
+    font-size: 20px;
+  }
+
+  .card span {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 2rem;
+    /* margin-left: 05rem; */
+    margin-top: 4rem;
+  }
+  .tag {
+    margin-top: 4rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .body-wrapper {
+    border-radius: 20px;
+  }
+
+  .board {
+    grid-auto-rows: 70px;
+    gap: 0.5rem;
+    margin: 20px 0 10px;
+  }
+
+  .square {
+    border-radius: 0 15px 0 15px;
+  }
+
+  .player {
+    font-size: 3rem;
+  }
+
+  .wrapper {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .scoreWrapper {
+    padding-bottom: 20px;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 0.5rem;
+  }
+
+  .card p {
+    font-size: 16px;
+  }
+
+  .card span {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+    margin-left: 0;
+  }
+}
+
+/* @media only screen and (max-width: 480px) */
