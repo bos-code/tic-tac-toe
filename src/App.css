@@ -17,6 +17,7 @@
 
 body {
   background-color: #3d1d4dfa;
+  height: 100vh;
 }
 
 .comp {
@@ -24,7 +25,6 @@ body {
   bottom: 0;
   left: 0;
   width: 250px;
-  z-index: -1;
 }
 
 .comp img {
@@ -83,6 +83,20 @@ body {
   color: #e2be00;
 }
 
+.winner-text {
+  font-size: 2rem;
+  color: #e2be00;
+}
+.winner-text--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: transparent;
+  border: 2px solid #bcdbf9;
+  border-radius: 50px;
+  margin-top: 2rem;
+}
 .tag {
   padding: 1rem;
   display: flex;
@@ -95,6 +109,11 @@ body {
   background-color: #2b0040;
   padding: 2rem;
   border-radius: 50px;
+  z-index: 4;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.1);
+  transform: perspective(500px) translateZ(0);
+  transition: all 0.3s ease;
 }
 .btn-wrapper {
   display: flex;
@@ -267,6 +286,10 @@ body {
     border-radius: 20px;
   }
 
+  .comp {
+    width: 200px;
+  }
+
   .board {
     grid-auto-rows: 70px;
     gap: 0.5rem;
@@ -309,5 +332,3 @@ body {
     margin-left: 0;
   }
 }
-
-/* @media only screen and (max-width: 480px) */

@@ -96,7 +96,11 @@ function HeroWrapper() {
 }
 
 export function Winner({ winner }) {
-  return <div>{winner ? `Winner: ${winner}` : ""}</div>;
+  return (
+    <div className="winner-text--wrapper">
+      {winner ? <p className="winner-text">Winner: {winner}</p> : ""}
+    </div>
+  );
 }
 
 export function Square({ value, onClick }) {
