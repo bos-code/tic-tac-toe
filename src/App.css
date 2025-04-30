@@ -101,6 +101,50 @@ body {
   align-items: start;
 }
 
+.reset-game-wrapper {
+  background-color: #e2be00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0 30px 0 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.reset--btn {
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0 30px 0 30px;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 255, 255, 0);
+  background: linear-gradient(45deg, #ff00cc, #3333ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.1);
+  transform: perspective(500px) translateZ(0);
+}
+
+.reset--btn:hover {
+  transform: perspective(500px) translateZ(15px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6),
+    inset 0 -6px 14px rgba(255, 255, 255, 0.15);
+}
+.reset--btn:active {
+  transform: perspective(500px) translateZ(0);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.1);
+}
+.reset-game-wrapper:hover {
+  background-color: #bcdbf9;
+}
+
 .scoreWrapper {
   display: flex;
   justify-content: center;

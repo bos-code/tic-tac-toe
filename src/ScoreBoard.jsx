@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-export function ScoreBoard({ onDraw, winner }) {
-  const [draw, setDraw] = useState(0);
-  const [win, setWin] = useState(0);
-  const [loss, setLoss] = useState(0);
+export function ScoreBoard({
+  onDraw,
+  winner,
+  draw,
+  setDraw,
+  win,
+  setWin,
+  loss,
+  setLoss,
+}) {
   useEffect(() => {
     if (onDraw) {
       setDraw((prev) => prev + 1); // Draw
